@@ -32,6 +32,14 @@ window.onload = function(){
         .innerHTML =
 
         "Welcome back, " + user;
+        document.getElementById("email").value =
+localStorage.getItem("email") || "";
+
+document.getElementById("city").value =
+localStorage.getItem("city") || "";
+
+document.getElementById("symptoms").value =
+localStorage.getItem("symptoms") || "";
     }
 
     else{
@@ -42,6 +50,7 @@ window.onload = function(){
         .innerHTML =
 
         "Welcome New User";
+        localStorage.clear();
     }
 }
 
@@ -414,6 +423,17 @@ function validateForm(){
             "firstName",
             firstName,
             2);
+            localStorage.setItem(
+"email",
+document.getElementById("email").value);
+
+localStorage.setItem(
+"city",
+document.getElementById("city").value);
+
+localStorage.setItem(
+"symptoms",
+document.getElementById("symptoms").value);
         }
 
         alert("Validation Passed");
