@@ -34,47 +34,6 @@ window.onload = function(){
         "Welcome back, " + user;
     }
 
-    else{
-
-        document.getElementById(
-        "welcomeMessage")
-
-        .innerHTML =
-
-        "Welcome New User";
-    }
-}
-else{
-
-    document.getElementById(
-    "welcomeMessage")
-
-    .innerHTML =
-
-    "Welcome New User";
-}
-
-    document.getElementById("currentDate")
-    .innerHTML =
-    today.toLocaleDateString();
-
-    fetch("states.txt")
-
-    .then(response => response.text())
-
-    .then(data => {
-
-        document.getElementById("state")
-        .innerHTML = data;
-    })
-
-    .catch(error => {
-
-        console.log(error);
-    });
-}
-
-
 function updateSlider(){
 
     document.getElementById("salaryValue")
