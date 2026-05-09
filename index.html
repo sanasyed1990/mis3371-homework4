@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>FirstLine Health</title>
+
+<link rel="stylesheet"
+href="style.css">
+
+<script src="script.js" defer></script>
+
+</head>
+
+<body>
+
+<div id="header">
+
+<div class="logo-section">
+
+<img src="./logo.png"
+alt="FLH Logo"
+class="logo">
+
+</div>
+
+<div class="title-section">
+
+<h1>FirstLine Health</h1>
+
+</div>
+
+<div id="currentDate"></div>
+
+</div>
+
+<div id="main">
+
+<h2>Patient Registration Form</h2>
+
+<form action="thankyou.html"
+id="patientForm"
+onsubmit="return false;">
+
+<table>
+
+<tr>
+
+<td>First Name:</td>
+
+<td>
+<input type="text"
+id="firstName"
+oninput="validateFirstName()">
+
+<span class="error"
+id="firstNameError"></span>
+</td>
+
+<td>Middle Initial:</td>
+
+<td>
+<input type="text"
+maxlength="1">
+</td>
+
+<td>Last Name:</td>
+
+<td>
+<input type="text"
+id="lastName"
+oninput="validateLastName()">
+
+<span class="error"
+id="lastNameError"></span>
+</td>
+
+</tr>
+
+<tr>
+
+<td>Date of Birth:</td>
+
+<td>
+<input type="date"
+id="dob"
+onblur="validateDOB()">
+
+<span class="error"
+id="dobError"></span>
+</td>
+
+<td>Social Security:</td>
+
+<td>
+
+<input type="password"
+id="ssn"
+maxlength="11"
+oninput="validateSSN()">
+
+<label>
+
+<input type="checkbox"
+onclick="toggleSSN()">
+
+Show SSN
+
+</label>
+
+<span class="error"
+id="ssnError"></span>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>Address Line 1:</td>
+
+<td>
+<input type="text"
+id="address1">
+</td>
+
+<td>Address Line 2:</td>
+
+<td>
+<input type="text"
+id="address2">
+</td>
+
+</tr>
+
+<tr>
+
+<td>City:</td>
+
+<td>
+<input type="text"
+id="city">
+</td>
+
+<td>State:</td>
+
+<td>
+
+<select id="state">
+
+<option value="">Select</option>
+
+<option>TX</option>
+<option>CA</option>
+<option>NY</option>
+<option>FL</option>
+<option>WA</option>
+
+</select>
+
+</td>
+
+<td>Zip Code:</td>
+
+<td>
+<input type="text"
+id="zip"
+maxlength="5"
+oninput="validateZip()">
+
+<span class="error"
+id="zipError"></span>
+</td>
+
+</tr>
+
+<tr>
+
+<td>Email:</td>
+
+<td>
+<input type="text"
+id="email"
+oninput="validateEmail()">
+
+<span class="error"
+id="emailError"></span>
+</td>
+
+<td>User ID:</td>
+
+<td>
+<input type="text"
+id="userId"
+oninput="validateUserID()">
+
+<span class="error"
+id="userIdError"></span>
+</td>
+
+</tr>
+
+<tr>
+
+<td>Password:</td>
+
+<td>
+<input type="password"
+id="password"
+oninput="validatePasswordStrength()">
+
+<span class="error"
+id="passwordError"></span>
+</td>
+
+<td>Re-enter Password:</td>
+
+<td>
+<input type="password"
+id="confirmPassword"
+oninput="validatePasswordMatch()">
+
+<span class="error"
+id="confirmPasswordError"></span>
+</td>
+
+</tr>
+
+<tr>
+
+<td>Gender:</td>
+
+<td colspan="5">
+
+<label><input type="radio" name="gender"> Male</label>
+
+<label><input type="radio" name="gender"> Female</label>
+
+<label><input type="radio" name="gender"> Other</label>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>Vaccinated?</td>
+
+<td colspan="5">
+
+<label><input type="radio" name="vaccine"> Yes</label>
+
+<label><input type="radio" name="vaccine"> No</label>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>Insurance?</td>
+
+<td colspan="5">
+
+<label><input type="radio" name="insurance"> Yes</label>
+
+<label><input type="radio" name="insurance"> No</label>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>Medical History:</td>
+
+<td colspan="5">
+
+<label><input type="checkbox"> Chicken Pox</label>
+
+<label><input type="checkbox"> Measles</label>
+
+<label><input type="checkbox"> COVID-19</label>
+
+<label><input type="checkbox"> Tetanus</label>
+
+<label><input type="checkbox"> Smallpox</label>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>Describe Symptoms:</td>
+
+<td colspan="5">
+
+<textarea id="symptoms"></textarea>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>Health Scale (1–10):</td>
+
+<td colspan="5">
+
+<input type="range"
+id="salary"
+min="1"
+max="10"
+value="5"
+oninput="updateSlider()">
+
+<span id="salaryValue">5</span>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td colspan="6"
+align="center">
+
+<button type="button"
+onclick="reviewForm()">
+Review
+</button>
+
+<button type="button"
+onclick="validateForm()">
+Validate
+</button>
+
+<input type="reset"
+value="Reset">
+
+<button type="button"
+id="submitBtn"
+style="display:none;"
+onclick="goToThankYou()">
+
+Submit
+
+</button>
+
+</td>
+
+</tr>
+
+</table>
+
+</form>
+
+<div id="reviewSection">
+
+<h2>PLEASE REVIEW THIS INFORMATION</h2>
+
+<div id="reviewOutput"></div>
+
+</div>
+
+</div>
+
+  <h2>Health Information</h2>
+
+<iframe
+src="https://www.cdc.gov"
+width="100%"
+height="400">
+
+</iframe>
+
+<div id="footer">
+
+FirstLine Health | Houston, TX
+
+</div>
+
+</body>
+</html>
