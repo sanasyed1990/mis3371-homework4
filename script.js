@@ -34,6 +34,17 @@ window.onload = function(){
         "Welcome back, " + user;
     }
 
+    else{
+
+        document.getElementById(
+        "welcomeMessage")
+
+        .innerHTML =
+
+        "Welcome New User";
+    }
+}
+
 function updateSlider(){
 
     document.getElementById("salaryValue")
@@ -150,18 +161,20 @@ function validateSSN(){
 
     ssn = ssn.replace(/\D/g,'');
 
-    if(ssn.length > 3 && ssn.length <=5)
+    if(ssn.length > 3 && ssn.length <= 5){
 
-    ssn =
-    ssn.slice(0,3) + "-" +
-    ssn.slice(3);
+        ssn =
+        ssn.slice(0,3) + "-" +
+        ssn.slice(3);
+    }
 
-    if(ssn.length > 5)
+    if(ssn.length > 5){
 
-    ssn =
-    ssn.slice(0,3) + "-" +
-    ssn.slice(3,5) + "-" +
-    ssn.slice(5,9);
+        ssn =
+        ssn.slice(0,3) + "-" +
+        ssn.slice(3,5) + "-" +
+        ssn.slice(5,9);
+    }
 
     document.getElementById("ssn").value =
     ssn;
@@ -194,7 +207,13 @@ function validateEmail(){
     document.getElementById("email").value =
     email;
 
-    if(!regex.test(email)){
+    if(email === ""){
+
+        error.innerHTML =
+        "Email required";
+    }
+
+    else if(!regex.test(email)){
 
         error.innerHTML =
         "Invalid email format";
@@ -385,16 +404,18 @@ function validateForm(){
 
         document.getElementById("submitBtn")
         .style.display = "inline-block";
-if(document.getElementById("rememberMe").checked){
 
-    let firstName =
-    document.getElementById("firstName").value;
+        if(document.getElementById("rememberMe").checked){
 
-    setCookie(
-    "firstName",
-    firstName,
-    2);
-}
+            let firstName =
+            document.getElementById("firstName").value;
+
+            setCookie(
+            "firstName",
+            firstName,
+            2);
+        }
+
         alert("Validation Passed");
     }
 
@@ -403,11 +424,13 @@ if(document.getElementById("rememberMe").checked){
         alert("Fix errors first");
     }
 }
+
 function goToThankYou(){
 
     window.location.href =
     "thankyou.html";
 }
+
 function setCookie(name, value, days){
 
     let date = new Date();
@@ -453,4 +476,3 @@ function getCookie(name){
 
     return "";
 }
-
