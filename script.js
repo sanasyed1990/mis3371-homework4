@@ -1,4 +1,4 @@
-window.onload = function(){
+window.addEventListener("load", function(){
 
     const today = new Date();
 
@@ -465,3 +465,4 @@ function getCookie(name){
 
     return "";
 }
+);
