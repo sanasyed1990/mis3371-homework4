@@ -1,20 +1,49 @@
-window.addEventListener("load", function(){
+window.onload = function(){
 
     const today = new Date();
 
-    let user =
-getCookie("firstName");
-
-if(user != ""){
-
-    document.getElementById(
-    "welcomeMessage")
-
+    document.getElementById("currentDate")
     .innerHTML =
+    today.toLocaleDateString();
 
-    "Welcome back, " + user;
+    fetch("states.txt")
+
+    .then(response => response.text())
+
+    .then(data => {
+
+        document.getElementById("state")
+        .innerHTML = data;
+    })
+
+    .catch(error => {
+
+        console.log(error);
+    });
+
+    let user =
+    getCookie("firstName");
+
+    if(user != ""){
+
+        document.getElementById(
+        "welcomeMessage")
+
+        .innerHTML =
+
+        "Welcome back, " + user;
+    }
+
+    else{
+
+        document.getElementById(
+        "welcomeMessage")
+
+        .innerHTML =
+
+        "Welcome New User";
+    }
 }
-
 else{
 
     document.getElementById(
@@ -465,4 +494,4 @@ function getCookie(name){
 
     return "";
 }
-);
+
