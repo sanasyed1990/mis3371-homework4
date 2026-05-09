@@ -24,6 +24,12 @@ body {
     align-items: center;
 
     overflow: hidden;
+    
+    position: sticky;
+
+top: 0;
+
+z-index: 1000;
 }
 
 .logo {
@@ -171,4 +177,10 @@ input[type="reset"] {
     padding: 15px;
 
     margin-top: 20px;
+
+    position: fixed;
+
+bottom: 0;
+
+width: 100%;
 }
