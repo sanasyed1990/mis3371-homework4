@@ -2,6 +2,29 @@ window.onload = function(){
 
     const today = new Date();
 
+    let user =
+getCookie("firstName");
+
+if(user != ""){
+
+    document.getElementById(
+    "welcomeMessage")
+
+    .innerHTML =
+
+    "Welcome back, " + user;
+}
+
+else{
+
+    document.getElementById(
+    "welcomeMessage")
+
+    .innerHTML =
+
+    "Welcome New User";
+}
+
     document.getElementById("currentDate")
     .innerHTML =
     today.toLocaleDateString();
@@ -374,7 +397,16 @@ function validateForm(){
 
         document.getElementById("submitBtn")
         .style.display = "inline-block";
+if(document.getElementById("rememberMe").checked){
 
+    let firstName =
+    document.getElementById("firstName").value;
+
+    setCookie(
+    "firstName",
+    firstName,
+    2);
+}
         alert("Validation Passed");
     }
 
@@ -387,4 +419,49 @@ function goToThankYou(){
 
     window.location.href =
     "thankyou.html";
+}
+function setCookie(name, value, days){
+
+    let date = new Date();
+
+    date.setTime(
+    date.getTime() +
+    (days*24*60*60*1000));
+
+    let expires =
+    "expires=" + date.toUTCString();
+
+    document.cookie =
+    name + "=" + value + ";" +
+    expires + ";path=/";
+}
+
+function getCookie(name){
+
+    let cookieName = name + "=";
+
+    let decodedCookie =
+    decodeURIComponent(document.cookie);
+
+    let ca =
+    decodedCookie.split(';');
+
+    for(let i = 0; i < ca.length; i++){
+
+        let c = ca[i];
+
+        while(c.charAt(0) == ' '){
+
+            c = c.substring(1);
+        }
+
+        if(c.indexOf(cookieName) == 0){
+
+            return c.substring(
+            cookieName.length,
+            c.length);
+        }
+    }
+
+    return "";
 }
